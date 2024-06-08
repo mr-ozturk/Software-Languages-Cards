@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOVER CARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            background-color: #000;
+        }
+
+        .wrapper {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 80rem;
+        }
+
+        .cols {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        .col {
+            width: calc(25% - 2rem);
+            margin: 1rem;
+            cursor: pointer;
+
+        }
+
+        .container {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-perspective: 1000px;
+            perspective: 1000px;
+        }
+
+        .front,
+        .back {
+            background-size: cover;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            background-position: center;
+            -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            text-align: center;
+            min-height: 280px;
+            box-shadow: 0 0 10px solid blue;
+
+            height: auto;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+
+        .back {
+            background: #cedce7;
+            background: -webkit-linear-gradient(45deg, #cedce7 0%, #596a72 100%);
+            background: -o-linear-gradient(45deg, #cedce7 0%, #596a72 100%);
+            background: linear-gradient(45deg, #cedce7 0%, #596a72 100%);
+        }
+
+        .front:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            content: '';
+            display: block;
+            opacity: .6;
+            background-color: #000;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+
+        .container:hover .front,
+        .container:hover .back {
+            -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+        }
+
+        .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .inner {
+            -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
+            transform: translateY(-50%) translateZ(60px) scale(0.94);
+            top: 50%;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            outline: 1px solid transparent;
+            -webkit-perspective: inherit;
+            perspective: inherit;
+            z-index: 2;
+        }
+
+        .container .back {
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .container .front {
+            -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .container:hover .back {
+            -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .container:hover .front {
+            -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+
+        .front .inner p {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .front .inner p:after {
+            content: '';
+            width: 4rem;
+            height: 2px;
+            position: absolute;
+            background: #C6D4DF;
+            display: block;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            bottom: -.75rem;
+        }
+
+        .front .inner span {
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Montserrat';
+            font-weight: 300;
+        }
+
+        @media screen and (max-width: 64rem) {
+            .col {
+                width: calc(33.333333% - 2rem);
+            }
+        }
+
+        @media screen and (max-width: 48rem) {
+            .col {
+                width: calc(50% - 2rem);
+            }
+        }
+
+        @media screen and (max-width: 32rem) {
+            .col {
+                width: 100%;
+                margin: 0 0 2rem 0;
+            }
+        }
+
+        /* -- YouTube Link  -- */
+
+        #source-link {
+            top: 60px;
+        }
+
+        #source-link>i {
+            color: rgb(94, 106, 210);
+        }
+
+        #yt-link {
+            top: 10px;
+        }
+
+        #yt-link>i {
+            color: rgb(219, 31, 106);
+
+        }
+
+        .meta-link {
+            align-items: center;
+            backdrop-filter: blur(3px);
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            display: inline-flex;
+            gap: 5px;
+            left: 10px;
+            padding: 10px 20px;
+            position: fixed;
+            text-decoration: none;
+            transition: background-color 600ms, border-color 600ms;
+            z-index: 10000;
+        }
+
+        .meta-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .meta-link>i,
+        .meta-link>span {
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .meta-link>span {
+            color: white;
+            font-family: "Rubik", sans-serif;
+            transition: color 600ms;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="cols">
+
+            <!-- 1. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(1.jpg)">
+                        <div class="inner">
+                            <p><i>Programlama Dili</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>Microsoft tarafından geliştirilen, güvenli ve güçlü uygulamalar oluşturmak için kullanılan, modern, nesne yönelimli bir programlama dilidir.</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(2.jpg)">
+                        <div class="inner">
+                            <p><i>Programlama Dili</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>JavaScript, web sayfalarına dinamik ve etkileşimli özellikler eklemek için kullanılan, istemci taraflı çalışan bir programlama dilidir.</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(3.jpg)">
+                        <div class="inner">
+                            <p><i>İşaretleme Dili</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>HTML, başlıklar, paragraflar, listeler, bağlantılar, resimler ve diğer medya öğeleri gibi çeşitli içerik türlerini belirlemek için etiketler kullanarak web sayfalarının temel iskeletini oluşturur.</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(4.jpg)">
+                        <div class="inner">
+                            <p><i>Stil Dili</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>CSS, HTML ile oluşturulan web sayfalarına stil ekleyerek renkleri, yazı tiplerini, kenar boşluklarını, hizalamaları, konumlandırmayı ve diğer görsel öğeleri belirler. </i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(5.jpg)">
+                        <div class="inner">
+                            <p><i>Yapılandırılmış Bir Sorgu Dili</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>Veritabanlarında veri eklemek, silmek, güncellemek, sorgulamak ve veritabanı yapısını tanımlamak için çeşitli komutlar sağlar. </i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(6.jpg)">
+                        <div class="inner">
+                            <p><i>Ön Yüz Geliştirme Kütüphanesi</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>Bootstrap, duyarlı ve modern web siteleri oluşturmak için kullanılan açık kaynaklı bir front-end framework'tür.</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(7.jpg)">
+                        <div class="inner">
+                            <p><i>Javascript Kütüphanesi</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>React, kullanıcı arayüzlerini oluşturmak için kullanılan açık kaynaklı bir JavaScript kütüphanesidir.</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(8.jpg)">
+                        <div class="inner">
+                            <p><i>UI (User Interface) Çerçevesi</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>React Native, JavaScript ve React'i kullanarak, geliştiricilere web teknolojilerini kullanarak mobil uygulamalar oluşturma esnekliği sunar.</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(9.jpg)">
+                        <div class="inner">
+                            <p><i>Web Uygulaması Çerçevesi</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>Angular, Google tarafından geliştirilen bir JavaScript framework'üdür ve dinamik, tek sayfa uygulamaları (SPA) oluşturmak için kullanılır.</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Kart -->
+            <div class="col" ontouchstart="this.classList.toggle('hover');">
+                <div class="container">
+                    <div class="front" style="background-image: url(10.jpg)">
+                        <div class="inner">
+                            <p><i>Programlama Dili</i></p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="back">
+                        <div class="inner">
+                            <p><i>Microsoft tarafından geliştirilen ve JavaScript'e katmanlar ekleyerek daha güvenli ve büyük ölçekli uygulamalar geliştirmeyi sağlayan bir programlama dilidir.</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Finish -->
+
+        </div>
+    </div>
+</body>
+</html>

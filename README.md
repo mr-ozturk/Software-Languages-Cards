@@ -78,6 +78,267 @@ height: 100%;: Yüksekliği %100 yapar.
 
 Bu CSS kodları, sayfanın görsel olarak etkileyici ve kullanıcı dostu olmasını sağlar. Arka plan videosu, hero bölümünün öne çıkmasını sağlarken, metin ve bağlantılar kullanıcı etkileşimleri için tasarlanmıştır.
 
+Hover Card index.html kodlarının açıklaması:
+Bu HTML ve CSS kodları, üzerinde hover (fare üzerine geldiğinde) etkisi olan kartlar içeren bir web sayfası oluşturmak için kullanılır. Her kart, ön ve arka yüzlere sahip olup, fare ile üzerine gelindiğinde döner ve arka yüzü gösterir. Bu etkileyici tasarım özellikle bilgi kartları, portföyler veya benzeri içerik sunumları için kullanılabilir.
+
+### HTML Kodu:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOVER CARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+```
+- `<!DOCTYPE html>`: HTML5 belgesini tanımlar.
+- `<html lang="en">`: Dili İngilizce olarak belirler.
+- `<meta charset="UTF-8">`: Belge karakter setini UTF-8 olarak belirler.
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Mobil uyumluluğu sağlar.
+- `<title>HOVER CARD</title>`: Sayfa başlığı.
+- `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">`: Font Awesome kütüphanesini dahil eder.
+
+```html
+    <style>
+        /* CSS kodları */
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="cols">
+            <!-- Kartlar burada olacak -->
+        </div>
+    </div>
+</body>
+</html>
+```
+- `<style>`: CSS kodlarını içeren bölüm.
+- `<body>`: Sayfa içeriği burada başlar.
+- `<div class="wrapper">`: Tüm kartların içinde bulunacağı ana konteyner.
+- `<div class="cols">`: Kartları tutan sütunlar.
+
+### CSS Kodu:
+
+```css
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+```
+- Tüm öğelerin kenar boşluklarını ve dolgu alanlarını sıfırlar. Box modelini sınırlar.
+
+```css
+body {
+    background-color: #000;
+}
+```
+- Sayfa arka planını siyah yapar.
+
+```css
+.wrapper {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 80rem;
+}
+```
+- Wrapper genişliğini ve merkezlenmesini ayarlar.
+
+```css
+.cols {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+```
+- Kartların yer aldığı sütunların esnek kutu modeli ile düzenlenmesini sağlar.
+
+```css
+.col {
+    width: calc(25% - 2rem);
+    margin: 1rem;
+    cursor: pointer;
+}
+```
+- Her kartın genişliğini ve kenar boşluklarını ayarlar.
+
+```css
+.container {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+```
+- 3D dönüşümleri mümkün kılar.
+
+```css
+.front,
+.back {
+    background-size: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-position: center;
+    -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    text-align: center;
+    min-height: 280px;
+    height: auto;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+}
+```
+- Kartların ön ve arka yüzleri için stilleri tanımlar. 3D dönüşüm ve animasyon geçişlerini ayarlar.
+
+```css
+.front:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: block;
+    opacity: .6;
+    background-color: #000;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+```
+- Ön yüzün üzerine yarı saydam siyah bir katman ekler.
+
+```css
+.container:hover .front,
+.container:hover .back {
+    -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+```
+- Fare ile üzerine gelindiğinde kartın dönüşüm geçişini tanımlar.
+
+```css
+.container .back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+```
+- Arka yüzün başlangıçta 180 derece döndürülmüş olduğunu belirler.
+
+```css
+.container .front {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+```
+- Ön yüzün başlangıçta 0 derece olduğunu belirler.
+
+```css
+.container:hover .back {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+```
+- Fare ile üzerine gelindiğinde arka yüzün 0 dereceye döndürülmesini sağlar.
+
+```css
+.container:hover .front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+```
+- Fare ile üzerine gelindiğinde ön yüzün -180 derece döndürülmesini sağlar.
+
+```css
+.front .inner p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+```
+- Kartın içindeki yazının boyutunu ve alt boşluğunu ayarlar.
+
+```css
+.front .inner p:after {
+    content: '';
+    width: 4rem;
+    height: 2px;
+    position: absolute;
+    background: #C6D4DF;
+    display: block;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -.75rem;
+}
+```
+- Yazının altına dekoratif bir çizgi ekler.
+
+```css
+.front .inner span {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Montserrat';
+    font-weight: 300;
+}
+```
+- Kartın içindeki span öğesi için stil tanımlar.
+
+```css
+@media screen and (max-width: 64rem) {
+    .col {
+        width: calc(33.333333% - 2rem);
+    }
+}
+@media screen and (max-width: 48rem) {
+    .col {
+        width: calc(50% - 2rem);
+    }
+}
+@media screen and (max-width: 32rem) {
+    .col {
+        width: 100%;
+        margin: 0 0 2rem 0;
+    }
+}
+```
+- Farklı ekran boyutları için duyarlı düzen sağlar. Ekran küçüldükçe kartların sayısını azaltır.
+
+```css
+/* -- YouTube Link  -- */
+
+#source-link {
+    top: 60px;
+}
+#source-link>i {
+    color: rgb
+
 
 
 
